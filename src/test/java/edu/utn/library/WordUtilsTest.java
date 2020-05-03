@@ -4,9 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 public class WordUtilsTest {
 
@@ -49,6 +49,27 @@ public class WordUtilsTest {
     public void testWordsStaringWithFail() throws TextIsNullException {
         WordUtils wordUtils = new WordUtils("HOLA COMO ESTAS?");
         long count = wordUtils.countWordsStartingWith(null);
+    }
+
+    @Test
+    public void testCountOcurrences(){
+        WordUtils wordUtils = new WordUtils("Hola, como estas; Yo bien. y vos?\nHola");
+        long count = wordUtils.countOcurrences("Hola");
+
+        assertEquals(2, count);
+
+        count = wordUtils.countOcurrences("estas");
+        assertEquals(1, count);
+    }
+
+    @Test
+    public void testGetOcurrencesByWord(){
+        WordUtils wordUtils = new WordUtils("Hola, como estas; Yo bien. y vos?\nHola");
+        Map<String, Long> a = wordUtils.getOcurrencesByWord();
+        Long b = 2L;
+        assertNotNull(a.get("Hola"));
+        assertEquals(b, a.get("Hola"));
+        assertNull(a.get("facu"));
     }
 
 }
