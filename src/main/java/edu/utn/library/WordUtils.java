@@ -31,7 +31,7 @@ public class WordUtils {
 
     public long countOcurrences(String word) {
         final List<String> words = getWords();
-        return words.stream().filter(o -> o.equals(words)).count();
+        return words.stream().filter(o -> o.equals(word)).count();
     }
 
 
