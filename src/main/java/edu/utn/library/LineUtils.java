@@ -30,15 +30,16 @@ public class LineUtils {
     }
 
     public List<String> getLinesEndingWith(String end) {
-        return getLines().stream().filter(line -> line.startsWith(end)).collect(Collectors.toList());
+        return getLines().stream().filter(line -> line.endsWith(end)).collect(Collectors.toList());
     }
 
-    public void loadFromFile(String filename) throws FileNotFoundException, IOException {
+    public void loadFromFile(String filename) throws IOException {
         FileReader fileReader = new FileReader(new File(filename));
         String tempText = "";
         char[] buffer = new char[1024];
-        while (fileReader.read(buffer) != 0) {
+        while (fileReader.read(buffer) != -1) {
             tempText = tempText + new String(buffer);
+
         }
         text = tempText;
     }
